@@ -1,0 +1,50 @@
+Franco Di Leo , 25
+Chaak.com.ar
+Solwin
+
+NodeJS, Angular , React
+Python 
+C , C++ 
+PHP (Kusta truck)
+
+3 Clases Javascript (Funciones, Funciones asincronicas, Objetos, Manejo de errores) 
++ SQL (Crear las tablas)
+
+1. Carrito de compras
+2. Chatbot para la casa (dar de alta ambientes, obtener informacion de la base de datos, configurar reglas automaticas, clima, correos)
+
+4. Express (Framework de NodeJS)
+5. Express (Conexion a la base de datos)
+6. MVC
+7. Nodejs
+8. JWT
+9. Expresiones regulares
+10. API (documentacion)
+11. Angular 8
+12. Angular 8
+13. Servicios
+14. Angular y escalado de aplicacion 
+Mi aplicacion           Google (API (Application program int))
+15. Integrar node + angular 
+16. API + Guardianes de ruta
+17. Storage y MercadoPago
+18. Angular
+19. MongoDB
+20. MongoDB
+21. Servidores
+22. Servidores
+23. React
+24. React
+25. React
+
+26. (Online --> Trabajo practico)
+
+Carrito de compras 
+Sistemas de gestion de clientes, stock, productos
+
+
+        Peticion
+    -------------------->
+    <-------------------
+          JSON
+
