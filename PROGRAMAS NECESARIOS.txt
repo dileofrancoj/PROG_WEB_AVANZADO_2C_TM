@@ -1,0 +1,19 @@
+POSTMAN : 
+
+https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
+
+NodeJS
+
+https://nodejs.org/es/download/
+
+Visual Studio Code
+
+https://code.visualstudio.com/
+
+XAMPP
+
+https://www.apachefriends.org/es/index.html
+
+Recomendable : 
+
+Armar una cuenta en AWS (Amazon Web Services)
