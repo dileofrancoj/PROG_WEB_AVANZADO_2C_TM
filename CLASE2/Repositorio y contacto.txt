@@ -1,0 +1,19 @@
+https://github.com/dileofrancoj/PROG_WEB_AVANZADO_2C_TM.git
+dileo.francoj@gmail.com
+
+https://www.youtube.com/watch?v=jSJ8xhKtfP4&list=PLTd5ehIj0goMCnj6V5NdzSIHBgrIXckGU
+
+--------------------------------------------
+Comandos git
+Una vez que los archivos están agregados al stage de git se puede hacer el commit
+
+git remote add origin https://gith........
+git add .
+git commit -m "mensaje"
+
+git push origin master
+
+git log --oneline devuelve un estado de los commits y el hash de identificación
+git reset hash de identificacion
+
+

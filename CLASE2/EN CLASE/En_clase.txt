@@ -1,0 +1,193 @@
+SQL (Relacionales)
+No SQL : Firebase (Base de datos orientada a documentos)
+
+
+Base de datos : carrito 
+
+Recordar que solo puede existir una primary key
+
+#1071 - Specified key was too long; max key length is 767 bytes : 95 caracteres
+
+YYYY-MM-DD HH:mm:SS | pipe 
+    usuarios
+        id_u int auto_increment | primary key
+        mail_u varchar(80) | UNIQUE key 
+        password_u | varchar(40) md5, sha1
+        nombre_u
+        apellido_u
+        codigo_confirmacion : uuid() : 
+        cuenta_confirmada | default : 0  | boolean
+        permisos : boolean : 0 para usuario normal | 1 para administrador
+
+    productos
+        id_p | primary key | auto_increment
+        nombre_p | 
+        descripcion_p | text
+        stock_p | int
+        precio_p | float
+        imagen_p | varchar | blob 'producto1.jpg' 
+        blob : Permite almacenar imagenes dentro de la base de datos (tabla)
+    reservas (tabla intermedia)
+
+        id_r : primary key | auto_increment
+        id_p_r : ID que relaciona la tabla productos con la tabla reservas
+        id_u_r : ID que relaciona la tabla 
+        usuarios con la tabla reservas
+        cantidad_r : cantidad de productos del mismo tipo 
+        fecha_r : DEFAULT CURRENT()
+    
+
+
+    compras
+        id_c : primary | A_I
+        id_p_c : ID QUE RELACIONA LA TABLA PRODUCTOS CON LA TABLA COMPRAS
+        id_u_c : ID que relaciona la tabla usuarios con la tabla compras
+        fecha_c : CURRENT()
+        cantidad_c : int
+        medioPago_c : int | 0 presencial | 1 
+        urlMercadoPago_c : varchar (UUID())
+        estadoTransaccion_c : boolean
+        MercadoPago
+
+        https://nuestraweb.com/transacciones/uuid()
+
+    fanart
+        id_f primary | A_I
+        id_u_f int (id que relaciona al usuario con el fanart)
+        foto_t
+        comentario_f
+        fecha_f
+        aprobado_f (estado que depende del administrador del sitio)
+
+
+
+
+MercadoPago : Asociar transacciones a una URL
+
+Pendientes | Realizadas
+
+        -----> 
+Una vez que la transacción esta aprobada o hubo algun error en mercadoPago este envia una peticion a una URL especifica
+
+POST --> URL de nuestro servidor 
+    {status : 'ok', code : 'fn2812nase871h231', url : '/urlUnica'}
+    {status : 'error', code : 'ind8192edsd', url : '/urlUnica'}
+
+
+-----------------------------------------------------------
+NodeJS : Rutas
+
+<form method="post" action="/registro">
+
+    <input type="text" name="nombre">
+
+</form>
+
+PROTOCOLO HTTP
+    POST, PUT, GET, DELETE
+
+API REST
+POST
+/registro : {nombre : 'franco'}
+GET
+/productos (todos los productos)
+/productos/1 (trae el producto 1)
+/productos?id=1
+PUT
+/productos/2 {descripcion : 'nueva descripcion'}
+DELETE 
+/productos/1
+
+----------------------------------------------------------
+show databases; -- lista las bases de datos
+use carrito;  -- ingresar a la base de datos
+show database show databases; 
+show tables; -- muestra las tablas de una DB
+
+CRUD : CREATE , READ , UPDATE , DELETE 
+       INSERT, SELECT, UPDATE, DELETE
+       POST, GET, PUT, DELETE
+
+1. SELECT campos from tabla; 
+2. SELECT * from tabla;  
+3. Condiciones dentro de consultas
+    SELECT * from tabla where campo = condicion
+    select * from productos where id_p = 1;
+4. SELECT * from productos where id_p = 1 and stock > 2;
+    >, >= , <, <= , <>
+5. SELECT * from productos where stock > 2 LIMIT 1;
+-- Slider : traer las ultimas 5 fotos del fanart.
+6. select * from productos order by id_p desc;
+    1 nombre descripcion --> 3 nombre descripcion
+    2 nombre descripcion --> 2 nombre descripcion
+    3 nombre descripcion --> 1 nombre descripcion
+7. SELECT * from productos order by id_p desc LIMIT 1;
+8. min, max, avg, sum : Columnas calculadas
+    El admin quiere saber cuantos productos tiene en deposito. 
+
+    select sum(stock_p) from productos; 
+    ALIAS : Nombre que se le da a una columna (virtual)
+        { sum(stock_p) : 38 }
+    select sum(stock_p) as total from productos;
+    select sum(stock_p) total from productos;
+
+    -- Nombre del producto con menos stock????
+    select nombre_p from productos where stock_p =min(stock_p) -- invalid use of group function
+
+
+    select nombre_p from productos where stock_p = (select min(stock_p) from productos);
+    -- subconsulta
+
+    Situacion : Estamos dentro del panel de administrador y el admin quiere ver : 
+    
+    Producto entre tablas : JOIN 
+
+    select cantidad_r, fecha_r, nombre_u, mail_u from reservas JOIN usuarios;
+
+    1 usuario --> 1 producto 
+    1 usuario --> + productos
+
+    select cantidad_r, fecha_r, nombre_u, mail_u from reservas join usuarios on id_u_r = id_u;
+
+
+
+
+    -- duplicados en el select. Le especificamos a SQL como están relacionadas las tablas entre si. 
+
+------------------------------------------------
+reservas | productos | usuarios 
+  id_p_r = id_p | id_u_r = id_u
+-- Esta consulta trae la última reserva ordenada por fecha , nombre de usuario, mail usuario, cantidad reservada y los datos del producto
+a. select fecha_r, nombre_u, mail_u, cantidad_r, nombre_p, foto_p, precio_p from reservas join productos on id_p_r = id_p join usuarios on id_u_r = id_u order by fecha_r desc limit 1;
+
+/admin/reservas
+    (JWT)
+    GET 
+        --> ¿Es el administrador el que hace esta consulta?
+        --> todas las reservas con los datos consultados en a.
+
+-- de la tabla productos el admin desea actualizar el stock
+
+TABLA
+    id_p (oculto) stock_p nombre descripcion foto 
+-- ACTUALIZACIÓN
+UPDATE productos set stock_p = 12 where id_p = 1;
+-- DELETE
+
+DELETE from productos where id_p = 1; 
+-- Franco reserva el producto 1
+
+Models en NodeJS
+/registro
+    operacion1 (consulta1)
+    operacion2 (consulta2) --> FALLA
+    operacion3 (consulta3)
+
+        --> ok El usuario ve un cartelito que dice : OK
+
+try {
+    start transaction -- inicia una casacada de operaciones
+} catch() {
+    // informar el error
+    rollback -- vuelve atrás la operacion que se ejecuto correctamente
+}
