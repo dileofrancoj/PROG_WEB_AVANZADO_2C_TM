@@ -14,5 +14,5 @@ function obtenerTodoPorId(id, callback) {
 // -- Nuestro código --
 var id = 3;
 obtenerTodoPorId(id, function(elTodoSolicitado) {
-    
+    console.log(elTodoSolicitado);
 });
