@@ -1,9 +1,9 @@
-// var
-// chrome://inspect/#devices
 
 const express = require('express');
 const router = express.Router(); 
 const productosModel = require('../models/productosModel');
+
+
 
 router.get('/', async (req,res,next)=> {
     try {

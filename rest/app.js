@@ -8,6 +8,8 @@ var indexRouter = require('./controllers/index');
 var usersRouter = require('./controllers/users');
 const productos = require('./controllers/productos');
 const usuarios = require('./controllers/usuarios');
+
+const productosAdmin = require('./controllers/productosadmin.js');
 var app = express();
 
 // view engine setup
@@ -24,6 +26,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/productos', productos);
 app.use('/usuarios', usuarios);
+
+app.use('/productosAdmin', productosAdmin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

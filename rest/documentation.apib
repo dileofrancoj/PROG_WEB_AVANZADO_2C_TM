@@ -1,0 +1,88 @@
+# Group Productos usuarios
+
+## Todos los productos [/productos]
+### Listado de todos los productos [GET]
++ Request 200
+    Location : /productos
+
++ Response 200 (application/json)
+
+        [
+            {
+                
+                "status": "ok",
+                "choices": [
+                    {
+                        "nombre_p": "Vino",
+                        "descripcion_p": "Descripcion producto",
+                        "precio_p": 2000,
+                        "stock_p" : 12,
+                        "imagen_p" : "/images/vino.png"
+                    }
+                ]
+            }
+        ]
+
+
+
+## Get producto [/productos/1]
+### GET Producto [GET]
++ Request 200 (application/json)
+    Location : /productos/1
++ Response 200 (application/json)
+    {
+        nombre_p : "vino",
+        precio_p : 142,
+        stock_p : 3,
+        descripcion_p : "vino rico",
+        imagen_p : "/images/vino.jpg"
+    }
+
+# Group ProductosAdmin
+## Delete producto [/productosAdmin/1]
+### DELETE producto [DELETE]
+
++ Request 200 (application/json)
+    Location : /productosAdmin/1
++ Response 200 (application/json)
+    {
+        status : 'ok'
+    }
+
+
+
+## Insert de productos [/productosAdmin]
+### Envio de productos [POST]
++ Request 200 (application/json)
+    + Body
+        {
+            nombre_p : "Vino", 
+            descripcion_p : "Descripcion del vino", 
+            precio_p : 146,
+            stock_p : 15, 
+            imagen_p : "/images/vino.jpg"
+        }
+    
++ Response 200 (application/json)
+   + Body
+        {
+            "status": "ok",
+            "id_p" : 5
+        }
+## Put Producto [/productosAdmin]
+### Put de producto [PUT]
++ Request 200 (application/json)
+    Location : /productosAdmin/1
+    + Body
+        {
+            nombre_p : "vino",
+            descripcion_p : "descripcion del vino",
+            precio_p : 145,
+            stock_p : 16,
+            imagen_p : "images/vino.jpg"
+        }
++ Response 200 (application/json)
+    + Body
+        {
+            status : 'ok'
+        }

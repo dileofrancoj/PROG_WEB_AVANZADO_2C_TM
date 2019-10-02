@@ -1,0 +1,50 @@
+Programas externos necesarios:
+POSTMAN
+
+Recordar que POSTMAN es un programa que sirve para testear API REST , automatizar testing de la API y documentar REST. 
+
+Tener en cuenta para POSTMAN : HTTP tiene 4 verbos fundamentales (POST,PUT,GET,DELETE)
+
+Estos verbos son un estandar y es la forma más eficiente para comunicarse con una ruta determinada.
+
+
+	Configurar los headers
+		Content-type : application/json
+	Body (peticion que haremos a una ruta)
+		raw (paquete de datos) : JSON
+			{"PAQUETE" : "VALOR"}
+
+Pasos a seguir para la creacion de un proyecto
+Una vez instalado : 
+npm i nodemon -g
+npm i express -g 
+npm i express-generator -g
+
+Se procede a crear un proyecto usando express
+
+express rest --hbs 
+
+Los modulos que necesitaremos para trabajar son : 
+
+npm i mysql --save
+npm i util --save
+npm i aglio -g
+npm i api-blueprint
+npm i dotenv
+
+Recordar que el proyecto se divide en controllers (routes) y models (parte lógica que se comunicará con la base de datos)
+
+Recordar tambien que el circuito de trabajo de express comienza con app.js por donde entran las solicitudes de ruta. app.js envia el trafico a la ruta con la que matchee y esta información se envía al controller (que a su vez tiene sus propias rutas internas)
+
+Dentro del controller (rutas internas) es cuando interactuamos con el model.
+El model es un archivo que, en general, se comunica con la base de datos del proyecto (una o más tablas).
+Dentro de la función async del model se envía una respuesta al controller y este es quien responde , en nuestro caso, con un .JSON pudiendo ser visto desde el navegador o desde algun programa externo como POSTMAN 
+
+* Recordar : 
+Formato de las peticiones : 
+
+
+[POST] : RUTA GENERAL [http://localhost:3000/nuevo]--> {paquete}
+[PUT] : RUTA ESPECIFICA [http://localhost:3000/actualizar/1] --> {paquete}
+[GET] : Ruta GENERAL O ESPECIFICA [http://localhost:3000/traer/1] | [http://localhost:3000/traer]
+[DELETE] : Ruta ESPECIFICA [http://localhost:3000/borrar/1]
