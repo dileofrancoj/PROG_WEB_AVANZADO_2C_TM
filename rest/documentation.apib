@@ -1,88 +1,64 @@
-# Group Productos usuarios
-
+#Group Productos Usuarios
 ## Todos los productos [/productos]
 ### Listado de todos los productos [GET]
+
 + Request 200
     Location : /productos
 
 + Response 200 (application/json)
+    [
+        {
+            status : 'ok',
+            data : [
+                {
+                    id_p : 2,
+                    nombre_p : "vino",
+                    descripcion_p : "vino descripcion",
+                    precio_p : 270.23,
+                    stock_p : 123123,
+                    imagen_p : '/images/foto.jpg'
+                }
+            ]
+        }
+    ]
 
-        [
-            {
-                
-                "status": "ok",
-                "choices": [
-                    {
-                        "nombre_p": "Vino",
-                        "descripcion_p": "Descripcion producto",
-                        "precio_p": 2000,
-                        "stock_p" : 12,
-                        "imagen_p" : "/images/vino.png"
-                    }
-                ]
-            }
-        ]
+## Producto individual [/productos/1]
+### Listado de producto individual [GET]
++ Request 200
+    Location : productos/1
 
-
-
-## Get producto [/productos/1]
-### GET Producto [GET]
-+ Request 200 (application/json)
-    Location : /productos/1
 + Response 200 (application/json)
-    {
-        nombre_p : "vino",
-        precio_p : 142,
-        stock_p : 3,
-        descripcion_p : "vino rico",
-        imagen_p : "/images/vino.jpg"
-    }
+    + Body 
+        {
+            nombre_p : 'Vino',
+            precio_p : 4123.2,
+            stock_p : 12,
+            descripcion_p : "vino de calidad",
+            imagen_p : "images/foto.jpg"
+        }
++ Response 500 (application/json)
+    + Body
+        {
+            status : 'error'
+        }
 
-# Group ProductosAdmin
-## Delete producto [/productosAdmin/1]
-### DELETE producto [DELETE]
+#Group Productos Admin
+## Alta de productos [/productosAdmin]
+### Insetar un nuevo producto [POST]
 
-+ Request 200 (application/json)
-    Location : /productosAdmin/1
-+ Response 200 (application/json)
-    {
-        status : 'ok'
-    }
-
-
-
-## Insert de productos [/productosAdmin]
-### Envio de productos [POST]
 + Request 200 (application/json)
     + Body
         {
-            nombre_p : "Vino", 
-            descripcion_p : "Descripcion del vino", 
-            precio_p : 146,
-            stock_p : 15, 
-            imagen_p : "/images/vino.jpg"
-        }
-    
-+ Response 200 (application/json)
-   + Body
-        {
-            "status": "ok",
-            "id_p" : 5
-        }
-## Put Producto [/productosAdmin]
-### Put de producto [PUT]
-+ Request 200 (application/json)
-    Location : /productosAdmin/1
-    + Body
-        {
+           
             nombre_p : "vino",
-            descripcion_p : "descripcion del vino",
-            precio_p : 145,
-            stock_p : 16,
-            imagen_p : "images/vino.jpg"
+            descripcion_p : "vino descripcion",
+            precio_p : 270.23,
+            stock_p : 123123,
+            imagen_p : '/images/foto.jpg'
         }
 + Response 200 (application/json)
-    + Body
+    + Body 
         {
             status : 'ok'
+            id_p : 4
         }

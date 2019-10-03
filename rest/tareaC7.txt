@@ -1,0 +1,19 @@
+1. Definir secured para las rutas
+    Comprobar si es administrador el id que estamos pasando
+    Se debe crear permisos dentro de la tabla y definir un valor 1 para el administrador. 
+
+2. Cuando se registra un usuario : 
+    Dar de alta el usuario
+    Agarrar el token que se genera automaticamente
+
+    Se debe enviar un mail al usuario (nodemailer)
+    Usuario | Contraseña | server de correo
+    Cuerpo del correo : <a href="localhost:3000/usuarios/1ad14a4d-bc2e-42d9-9430-d354b189b74f"
+
+3. Cuando un usuario quiere comprobar su correo 
+    router.get('/:token', async.....){
+
+    }
+    Compruebo si existe el token que se esta ingresando por URL. Si existe actualizo esa row y si no existe mando un json {status : 'invalid'}
+
+4. Actualizar contraseña (acá debe pasar por el middleware)

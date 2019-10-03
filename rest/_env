@@ -1,0 +1,7 @@
+
+DATABASE_NAME = "carrito"
+DATABASE_PASSWORD = ""
+DATABASE_USER = "root"
+DATABASE_HOST = "localhost"
+MAIL_USER = "dileo.francoj@gmail.com"
+MAIL_PASSWORD = "selacreyeron"
