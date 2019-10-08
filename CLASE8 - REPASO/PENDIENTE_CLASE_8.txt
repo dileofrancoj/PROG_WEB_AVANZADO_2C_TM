@@ -1,0 +1,58 @@
+*** Practica para hoy : (pendiente) ****
+
+	tareas : crear un controller (registro) que permita insertar un usuario nuevo
+			crear un model (registro) que inserte el usuario en la db
+			Crear un model (correo) que permita enviar un mail pasandole como parametro un objetoX
+
+			El model de registro debe llamar al model de correo.
+			Dentro del controller de usuario se deben tener la siguientes rutas : 
+
+			router.get('/' ....) : Encargada de brindar toda la configuración del usuario (nombre, apellido, correo, etc)
+			router.put('/'...) : Encargada de actualizar la contraseña del usuario y enviar un correo.
+			router.delete('/' ....) : Dejarla disponible por si el usuario quiere borrar avisos o mensajes de su panel.
+
+
+
+			Crear dentro de controllers una carpeta admin
+			Crear dentro de models una carpeta admin.
+			Dentro de la carpeta controllers/admin/ se deben generar los siguientes controllers : 
+				/controllers/admin/productos --> actual productosAdmin
+				/controllers/admin/compras -->
+			Dentro de la carpeta models/admin/ se deben generar los siguientes models
+				/models/admin/productosModel
+				/models/admin/comprasModel
+
+
+Ideal : Pasar el registro a un controller independiente (register)
+Cuando el usuario se registra se debe enviar un correo desde
+el correoModel(obj) pasar el obj del usuario
+
+El controller de usuarios debe quedar para obtener configuración del usuario
+Cambiar la contraseña , etc
+Eliminar avisos que puedan aparecer en el sitio 
+
+Se debe armar la carpeta admin para models y para controllers : 
+
+Para lidiar con esto puede armarse un Auth dentro de admin y asignar un role como admin. ENtonces, se pasa el nuevo middleware y nos aseguramos en cada petición que el role sea de admin.
+
+El admin podrá : dar de alta productos
+El admin podrá : modificar productos
+El admin podrá : Ocultar productos
+El admin podrá : Consultar productos
+
+--------------------------------------------------------------------------
+Compras : 
+el admin podrá : ver todas las compras con los productos asociados
+el admin podrá : aprobar / rechazar una compra
+el admin podrá : aplicar filtros a las compras
+
+reservas : Una reserva está dada cuando un usuario registrado agrega al carrito un elemento
+
+Un usuario puede : alta de reservas
+Un usuario puede : Eliminar su reserva
+
+compras : Una compra está dada cuando un usuario registrado toca el boton de comprar. Esto dispara las siguientes acciónes.
+
+Una compra está dada por las reservas del usuario. Se genera un total y un id de compra. Este id de compra deberá impactar dentro de la tabla reservas. Debe existir un campo dentro de la tabla reservas (inicialmente null) que cuando la compra se efectue este se actualice haciendo referencia al id de compra que pertence esa reserva.
+
+Cuando se acredita el pago (ya sea por administrador o por una fuente externa), se debe actualizar el stock de todos los productos de esa reserva.
