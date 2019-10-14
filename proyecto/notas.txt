@@ -1,0 +1,76 @@
+La idea de este rest es que sea la base para poder gestionar varias plataformas e-commerce.
+
+1. Importar la base de datos : ecommerce
+
+Esta base cuenta con clientes. Imaginar a un cliente como el dueño de un e-commerce. Un cliente (un e-commerce) tiene usuarios,
+tiene productos, tiene contenido (posteos a modo de blog).
+Cada usuario de esta plataforma puede reservar productos (tabla carrito) y puede comprar (efectuar el pago de los productos tabla carrito)
+
+El proceso es el siguiente : 
+
+Se registra manualmente un cliente (tabla clientes)
+Un cliente puede dar de alta productos (ABM)
+Un cliente puede dar de alta contenido (ABM)
+
+Se registra un usuario dentro de la plataforma (cliente 1)
+El usuario inicia sesión en la plataforma y se genera un token para ese usuario.
+El usuario puede visualizar contenido de la plataforma
+
+El usuario (ruta segura) puede agregar al carrito n productos (aún no se verifica stock)
+El usuario (ruta segura) puede consultar su carrito y debería poder eliminar del mismo productos que ya no desee (pendiente)
+
+*** IMPORTANTE
+De ahora en más como esta API servira de base a n e-commerce (n clientes), las peticiones comunes (consulta de productos, login,
+registro, etc) se harán anteponiendo a que cliente pertenece ese producto, ese usuario, etc
+
+Un ejemplo claro de esto se ve dentro de controllers/productos.js
+
+router.get('/:idCliente', async (req, res, next) => {
+    try {
+        let productos = await productosModel.getProductos(req.params.idCliente);
+        res.json({ status : 'ok',data : productos});
+    } catch(error) {
+        res.status(500).json({status : 'error'});
+        throw error;
+    }
+});
+
+
+Imaginemos el caso que 3 personas consumen datos de nuestro REST para e-commerce. Tenemos que identificar si un navegador esta queriendo
+consumir información del e-commerce A, B O C. Entonces desde el navegador (frontend | postman) enviaremos a que cliente hace referencia
+la peticion.
+
+Para ver los productos del cliente 1 : 
+http://localhost:3000/productos/1
+
+Para ver los productos del cliente 2 : 
+
+http://localhost:3000/productos/2 
+
+Para ver del cliente numero 1 el producto 3 : 
+http://localhost:3000/productos/1/3
+
+*** IMPORTANTE : 
+Dentro del archivo .env se creo el DB_HOST, PASSWORD, DATABASE, ETC. Además, se listaron las tablas que se usaran en el proyecto.
+
+
+**** IMPORTANTE : 
+
+Cuando un usuario (perteneciente a un cliente) decide comprar, el proceso es el siguiente : 
+
+A: Un usuario agrega al carrito un producto X (luego se harán las comprobaciones necesarias)
+B: El usuario que reservó el producto, va a su carrito y toca el boton de comprar.
+
+En A el proceso esta hecho en : 
+controllers/carrito.js (POST) y usa una funcion de carritoModel. Dentro de la tabla carrito hay un campo ID_COMPRA_CARRITO que relaciona una "reserva" 
+con una compra. Por default, este campo cuando se agrega un elemento al carrito, es null. Este campo adquiere un valor cuando se efectua una compra.
+
+B. Cuando se realiza la compra, se inserta un elemento dentro de la tabla compras. Esta tabla relaciona un usuario, el monto, la fecha de 
+la compra, un estado (0 desaprobado, 1 aprobado) un token (uuid()) y una dirección de compra (envío)
+el id_compra campo primary y auto_increment de esta tabla (una vez que se registre la compra), se utilizará para actualizar el campo id_compra_carrito
+de la tabla carrito.
+
+Por estos campos estará relacionada una compra con N reservas.
+
+
+
