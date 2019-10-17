@@ -1,0 +1,95 @@
+Angular YA ()
+NodeJS YA (no recomendable)
+
+Instalar angular ( 1 vez )
+npm i @angular/cli -g
+
+Framework para trabajar frontend.
+
+npm uninstall -g @angular/cli
+npm i @angular/cli@6.2.9 -g
+
+Typescript (Javascript POO : Tipado)
+
+SPA : Single page application ()
+--------------------------------------
+
+Crear un nuevo proyecto
+ng new clase01
+cd clase01
+ng serve (default port = 4200) 
+ng serve --port = 8080
+ng serve -o
+---------------------------------------
+ng build  --> dist (html, css, js /images) --> subir al servidor
+
+Aplicación minima de angular : 
+
+
+Componente : 
+app-routing.module.ts : 
+app.module.ts (Modulos fundamentales para el desarrollo de la aplicación)
+
+
+app.component.html (vista) (variable, bucles, condicionales, funciones)
+app.component.css (estilos privados de los componentes)
+app.component.ts : 
+
+Estilos globables : 
+	styles.css
+Estilos privados: 
+
+						(Routing + Module)
+
+
+	| nav						| app.component
+(.html,.css,.ts, .spec.ts)	(.html , .css , .ts, spec.ts)
+
+
+
+componente ---> app.component.html ----> index.html (lo ve el usuario final)
+
+Modos de carga : 
+	Lazy Load (cargo lo que solicita el usuario)
+	Normal (carga todo el sitio al principio)
+
+
+Dentro de un metodo de una clase puedo : 
+    let nombre = "juan";
+    this.nombre = 'franquito'
+
+    this.nombre hace referencia a una propiedad global del component
+    let nombre hace referencia a una variable local al metodo
+
+Bootstrap local (angular.json)
+Bootstrap online (CDN)
+
+Angular cli : Command line I 
+
+ng generate component components/personas
+ng g c 
+Generar un componente llamado personas (.html, .css, spec.ts, component.ts)
+
+Visual Studio : Microsoft
+Typescript : Microsoft
+
+app.module.ts
+	declarations : [Componentes que se pueden consumir desde la aplicacion]
+
+	imports : [Modulos]
+	providers : [Servicios]
+
+app-routing.module.ts : 
+	
+	1. Tenemos la declaracion de las rutas y de los componentes asociados a las mismas.
+	2. SPA --> n paginas --> n componentes
+		   --> n rutas : routes
+
+
+constructor(Cargar los servicios) {
+	
+}
+
+ngOnInit() {
+	// hago las peticiones a mi servicio ya cargado.
+}	

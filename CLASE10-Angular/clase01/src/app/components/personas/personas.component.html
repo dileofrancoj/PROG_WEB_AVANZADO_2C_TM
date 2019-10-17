@@ -1,0 +1,42 @@
+
+<div class="container">
+
+<div *ngIf="cantidadPersonas > 0; else noHayPersonas">
+<table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Edad</th>
+      </tr>
+    </thead>
+
+    <!-- Angular presenta directivas de etiqueta -->
+    <tr *ngFor='let persona of curso'>
+      <!-- a partir del array de objetos : curso se crea un molde llamado persona que contiene todas las propiedades que tiene curso para esa posicion -->
+      <td>{{persona.id}}</td>
+      <td>{{persona.nombre}}</td>
+      <td>{{persona.apellido}}</td>
+      <td>{{persona.correo}}</td>
+      <!-- Muestra las etiquetas que cumplen esa condicion -->
+
+      <!-- templates -->
+      <td *ngIf="persona.edad < 100; else adultoMayor">{{persona.edad}}</td>
+    </tr>
+    
+  </table>
+<!-- fin de div cantidadPersonas -->
+</div> 
+  
+</div>
+<!-- interpolacion -->
+
+<ng-template #adultoMayor>
+  <td><b>Es un adulto mayor</b></td>
+</ng-template>
+
+<ng-template #noHayPersonas>
+  <h4>No hay usuarios cargados</h4>
+</ng-template>
