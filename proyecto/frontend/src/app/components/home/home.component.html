@@ -1,1 +1,18 @@
-<p>home works!</p>
+
+
+<div class="row">
+    <div class="col-4" *ngFor="let p of productos">
+        <div class="card">
+            <img src="https://www.joyeriasanchez.com/24630-home_default/cadena-cosine-eslabones-barbados-oro-18k-60cm.jpg"  class="card-img-responsive" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{p.nombre_producto}}</h5>
+              <!-- ..../producto/16 -->
+              <p class="card-text">{{p.descripcion_producto}}</p>
+              <a  class="btn btn-success btn-block"
+               (click) = "navigate(p.id_producto)">VER MÁS</a>
+               <!-- (), [()] -->
+            </div>
+          </div>
+
+    </div>
+</div>

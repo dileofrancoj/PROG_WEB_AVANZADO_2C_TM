@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProductosService extends BaseService {
 
-  getProductos() {
+  async getProductos() {
     // /productos
     try {
 
@@ -16,10 +16,16 @@ export class ProductosService extends BaseService {
 
     }
   }
+  async getProducto(id){
+    try {
+      this.setEndPoint('productos/1/'+id);
+      return this.get();
 
-  getProducto(){
-    //productos/1
+    } catch(error) {
+      throw error;
+    }
   }
+
 
 
 

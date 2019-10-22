@@ -17,7 +17,6 @@ router.get('/', async(req,res,next)=> {
 })
 
 router.post('/', async(req,res,next)=> {
-    console.log("entra");
 
     try {
         if(req.id && req.role) {

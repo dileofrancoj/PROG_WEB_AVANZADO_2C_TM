@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2019 a las 22:16:20
+-- Tiempo de generación: 15-10-2019 a las 03:55:40
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -41,8 +41,10 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id_carrito`, `id_usuario_carrito`, `id_compra_carrito`, `id_producto_carrito`, `fecha_carrito`) VALUES
-(4, 1, NULL, 16, '2019-10-14 17:08:17'),
-(5, 1, NULL, 16, '2019-10-14 17:13:54');
+(4, 1, 7, 16, '2019-10-14 17:08:17'),
+(5, 1, 7, 16, '2019-10-14 17:13:54'),
+(6, 1, 8, 16, '2019-10-14 22:51:21'),
+(7, 1, 8, 16, '2019-10-14 22:51:42');
 
 -- --------------------------------------------------------
 
@@ -79,11 +81,19 @@ CREATE TABLE `compra` (
   `id_compra` int(11) NOT NULL,
   `id_usuario_compra` int(11) NOT NULL,
   `monto_compra` float NOT NULL,
-  `fecha_compra` datetime NOT NULL,
-  `estado_compra` int(11) NOT NULL,
+  `fecha_compra` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado_compra` int(11) NOT NULL DEFAULT '0',
   `token_compra` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `direccion_compra` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
+  `direccion_compra` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`id_compra`, `id_usuario_compra`, `monto_compra`, `fecha_compra`, `estado_compra`, `token_compra`, `direccion_compra`) VALUES
+(7, 1, 8402, '2019-10-14 22:36:03', 0, '47d123b6-b4d4-4cb0-903c-98d2e2b40bc5', NULL),
+(8, 1, 8402, '2019-10-14 22:52:39', 0, '1b4394ec-cb9d-45d2-aa5a-89a1fd41c234', NULL);
 
 -- --------------------------------------------------------
 
@@ -256,7 +266,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -268,7 +278,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
