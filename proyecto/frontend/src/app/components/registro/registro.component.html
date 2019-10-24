@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form [formGroup] = "form" (ngSubmit)="registrar()">
+                <div class="form-group">
+
+                    <input type="text" class="form-control" name="nombre" formControlName="nombre" placeholder="nombre">
+                    <span class="text-danger" *ngIf="form.get('nombre').status != 'VALID' && form.get('nombre').touched;">No cumple los requisitos</span>
+     
+                </div>
+                <div class="form-group">
+
+                    <input type="email" class="form-control" name="mail" formControlName="mail" placeholder="foo@example.com">
+                    <span class="text-danger" *ngIf="form.get('mail').status != 'VALID' && form.get('mail').touched;">Mail invalido</span>
+                </div>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-success btn-block">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>

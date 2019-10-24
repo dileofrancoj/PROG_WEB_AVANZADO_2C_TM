@@ -23,4 +23,15 @@ export class BaseService {
       throw error;
     }
   }
+
+  async post(obj) {
+    try {
+      // http://localhost:3000/usuarios/1
+      console.log(this.url_server + this.endpoint + "/"+environment.id_cliente);
+      return this.http.post(this.url_server + this.endpoint + "/" + environment.id_cliente  , obj).toPromise();
+      
+    } catch(error) {
+      throw error;
+    }
+  }
 }

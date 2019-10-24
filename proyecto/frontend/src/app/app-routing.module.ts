@@ -1,3 +1,5 @@
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +12,8 @@ const routes: Routes = [
 
   {path : 'productos', component : ProductosComponent},
   {path : 'producto/:id', component : ProductoComponent},
+  {path : 'registro', component : RegistroComponent},
+  {path : 'login', component : LoginComponent},
   {path : '**', redirectTo : 'home'}
 ];
 

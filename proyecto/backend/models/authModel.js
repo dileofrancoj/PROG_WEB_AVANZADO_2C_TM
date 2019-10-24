@@ -1,9 +1,9 @@
 const pool = require('../bd');
 
-async function loginUser(username,password) {
+async function loginUser(username,password, id) {
     try{
-        let query = "select id_usuario, permisos_usuario from ?? where mail_usuario = ? and password_usuario = ?";
-        const rows = await pool.query(query,[process.env.TABLA_USUARIOS,username,password]);
+        let query = "select id_usuario, permisos_usuario from ?? where mail_usuario = ? and password_usuario = ? and id_cliente_usuario = ?";
+        const rows = await pool.query(query,[process.env.TABLA_USUARIOS,username,password,id]);
 
         return rows;
     } catch(error) {

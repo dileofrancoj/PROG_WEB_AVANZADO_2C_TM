@@ -1,0 +1,20 @@
+<div class="container">
+        <div class="row">
+            <div class="col-8">
+                <form [formGroup] = "form" (ngSubmit)="login()">
+                    <div class="form-group">
+    
+                        <input type="text" class="form-control" name="mail" formControlName="mail" placeholder="mail">
+                        <span class="text-danger" *ngIf="form.get('mail').status != 'VALID' && form.get('mail').touched;">Usuario invalido</span>
+         
+                    </div>
+                    <div class="form-group">
+    
+                        <input type="password" class="form-control" name="password" formControlName="password" placeholder="foo@example.com">
+                        <span class="text-danger" *ngIf="form.get('password').status != 'VALID' && form.get('password').touched;">Password invalido</span>
+                    </div>
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-success btn-block">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>

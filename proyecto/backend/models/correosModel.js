@@ -3,7 +3,7 @@ const pool = require('../bd.js');
 
 async function getAdminEmail(id) {
     try {
-        let query = "select id_cliente , mail_cliente, password_mail_cliente, nombre_cliente from clientes where estado_cliente = 1 where id_cliente = ?";
+        let query = "select id_cliente , mail_cliente, password_mail_cliente, nombre_cliente from clientes where estado_cliente = 1 and id_cliente = ?";
         const rows = await pool.query(query,[id]);
         return rows;
     } catch(error) {

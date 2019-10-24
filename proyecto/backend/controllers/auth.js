@@ -6,10 +6,10 @@ const fs = require('fs');
 
 const authModel = require('../models/authModel');
 
-router.post('/login',async(req,res,next)=> {
-    console.log("Entra a ligin");
+router.post('/login/:id',async(req,res,next)=> {
     try {
-        let login_usr = await authModel.loginUser(req.body.user, md5(req.body.password));
+        let id_cliente = req.params.id;
+        let login_usr = await authModel.loginUser(req.body.mail, md5(req.body.password), id_cliente);
         if(login_usr.length > 0 ) {
             const privateKey = fs.readFileSync('./claves/privada.pem','utf-8');
             
@@ -28,6 +28,7 @@ router.post('/login',async(req,res,next)=> {
             }
             const usuario = {id : login_usr[0].id_usuario};
             const token = jwt.sign(payload,privateKey,signOptions);
+            console.log(token);
             res.json({usuario, JWT : token});
         } else {
             res.json({status : 'invalid', message : 'Usuario o contraseña incorrectos'})
