@@ -1,3 +1,4 @@
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ProductosComponent } from './components/productos/productos.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path : 'producto/:id', component : ProductoComponent},
   {path : 'registro', component : RegistroComponent},
   {path : 'login', component : LoginComponent},
+  {path : 'perfil',  component : PerfilComponent},
   {path : '**', redirectTo : 'home'}
 ];
 

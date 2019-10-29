@@ -26,7 +26,7 @@ router.post('/login/:id',async(req,res,next)=> {
                 var payload = {id : login_usr[0].id_usuario, role : 'user'};
 
             }
-            const usuario = {id : login_usr[0].id_usuario};
+            const usuario = {id : login_usr[0].id_usuario , nombre : login_usr[0].nombre_usuario };
             const token = jwt.sign(payload,privateKey,signOptions);
             console.log(token);
             res.json({usuario, JWT : token});

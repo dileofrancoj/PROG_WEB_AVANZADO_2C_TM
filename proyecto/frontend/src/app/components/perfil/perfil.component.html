@@ -1,0 +1,31 @@
+<!-- nombre, telefono, apellido, contraseña -->
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form [formGroup]="form" (ngSubmit)="putUsuario()" *ngIf="show_form">
+                <span>Nombre : </span>
+                <div class="form-group">
+                    <input class="form-control" formControlName="nombre_usuario" type="text">
+                </div>
+                <span>Apellido : </span>
+
+                <div class="form-group">
+                    <input class="form-control" formControlName="apellido_usuario" type="text">
+                </div>
+
+                <span>Telfono</span>
+                <div class="form-group">
+                    <input class="form-control" formControlName="telefono_usuario" type="text"></div>
+                    
+
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+            <button type="button" (click)="showPassword()" class="btn btn-warning">Cambiar contraseña</button>
+
+            <form [formGroup]="password" *ngIf="habilitar_password" (ngSubmit)="cambiarPassword()">
+                <input type="password" class="form-control" formControlName="password_usuario" placeholder="******">
+                <button type="submit" class="btn btn-primary">Actualizar contraseña</button>
+            </form>
+        </div>
+    </div>
+</div>

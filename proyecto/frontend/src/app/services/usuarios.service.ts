@@ -24,4 +24,24 @@ export class UsuariosService extends BaseService{
       throw  error;
     }
   }
+
+  async getUsuario() {
+    try {
+      this.setEndPoint('usuarios');
+      return this.get();
+    } catch (error) {
+
+    }
+  }
+
+
+  async putPassword(obj) {
+    this.setEndPoint('usuarios/changepassword');
+    return this.put(obj);
+  }
+
+  async putDatos(obj) {
+    this.setEndPoint('usuarios/changedatos');
+    return this.put(obj);
+  }
 }

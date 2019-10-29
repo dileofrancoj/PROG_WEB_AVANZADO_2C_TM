@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 
 <div class="row">
     <div class="col-4" *ngFor="let p of productos">
@@ -10,7 +10,7 @@
               <p class="card-text">{{p.descripcion_producto}}</p>
               <a  class="btn btn-success btn-block"
                (click) = "navigate(p.id_producto)">VER MÁS</a>
-               <!-- (), [()] -->
+               
             </div>
           </div>
 

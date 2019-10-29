@@ -18,7 +18,8 @@ export class RegistroComponent implements OnInit {
     // activar los controles
     this.form = new FormGroup({
       'nombre' : new FormControl('',[Validators.required,Validators.minLength(5)]),
-      'mail' : new FormControl('', [Validators.required,Validators.email])
+      'mail' : new FormControl('', [Validators.required,Validators.email]),
+      
 
     })
   }
@@ -34,13 +35,15 @@ export class RegistroComponent implements OnInit {
 
     let post_ok : any = await this.usuariosService.postUsuario(this.form.value);
     if(post_ok.status == "ok") {
-      Swal.fire({
+      await Swal.fire({
         position: 'center',
         type: 'success',
-        title: 'Usuario registrado correctamente',
+        title: 'Usuario registrado correctamente, confirma el correo para seguir',
         showConfirmButton: true,
         timer: Math.min()
       })
+      // 
+      this.form.reset();
     } else {
 
     }
