@@ -11,26 +11,37 @@ export class BaseService {
   // headersGlobal : any = {}
   constructor(private http : HttpClient, private router : Router) { }
 
-  getHttpOptions() {
+  getHttpOptions(code: boolean = false) {
+
     let httpHeadersOptions : any  = {}
     try {
-      if(localStorage.getItem('usuario')){
-        // content-type : 'application/json'
-        // Authorization : sesion
+      if(code) {
         httpHeadersOptions = {
           headers : new HttpHeaders({
-            // 'content-type' : 'application/json',
+            'content-type' : 'application/json',
             Authorization : localStorage.getItem('usuario') // token
           })
         } 
       } else {
-        httpHeadersOptions = {
-          headers : new HttpHeaders({
-            // 'content-type' : 'application/json'
-          })
+
+        if(localStorage.getItem('usuario')){
+          // content-type : 'application/json'
+          // Authorization : sesion
+          httpHeadersOptions = {
+            headers : new HttpHeaders({
+              'content-type' : 'application/json',
+              Authorization : localStorage.getItem('usuario') // token
+            })
+          } 
+        } else {
+          httpHeadersOptions = {
+            headers : new HttpHeaders({
+              // 'content-type' : 'application/json'
+            })
+          }
         }
+        return httpHeadersOptions;
       }
-      return httpHeadersOptions;
     } catch(error) {
       console.log(error);
     }
