@@ -16,6 +16,8 @@ const contenidoRouter = require('./controllers/contenido');
 const carritoRouter = require('./controllers/carrito');
 const compraRouter = require('./controllers/compra');
 const usuariosRouter = require('./controllers/usuarios');
+const uploadRouter = require('./controllers/upload');
+
 // Admin controller
 const authAdminRouter = require('./controllers/admin/auth');
 const mainAdminRouter = require('./controllers/admin/main');
@@ -66,6 +68,7 @@ securedAdmin = (req,res,next) => {
   }
 
 
+// registro.js
 
 app.use('/productos', productosRouter);
 app.use('/auth', authRouter);
@@ -74,6 +77,8 @@ app.use('/contenido', contenidoRouter); // ruta para ver posteos que se hagan de
 app.use('/carrito', secured, carritoRouter); // ruta protegida para que un usuario pueda ver todos los productos que tiene reservados
 app.use('/compra', secured, compraRouter);
 app.use('/usuarios', secured,usuariosRouter);
+app.use('/upload', uploadRouter);
+
 // ADMIN 
 
 app.use('/admin/auth', authAdminRouter);
@@ -85,10 +90,10 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  console.log(err);
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+
 });
 
 module.exports = app ;

@@ -1,6 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const usuariosModel = require('../models/usuariosModel');
+const multer = require('multer');
+const upload = multer({dest : './uploads'});
+const fs = require('fs');
+
+router.post('/upload/:id_cliente', upload.array('file',1),async(req,res,next)=> {
+    try {
+        fs.createReadStream('./uploads/'+req.files[0].filename).pipe(fs.createWriteStream('./uploads/'+req.files[0].originalname));
+        
+    } catch(error) {
+        console.log(error);
+    }
+})
+
 
 router.put('/changedatos/:id', async(req,res,next)=> {
     try {

@@ -9,6 +9,8 @@ const authModel = require('../models/authModel');
 router.post('/login/:id',async(req,res,next)=> {
     try {
         let id_cliente = req.params.id;
+        console.log(req.body.mail);
+        console.log(md5(req.body.password))
         let login_usr = await authModel.loginUser(req.body.mail, md5(req.body.password), id_cliente);
         if(login_usr.length > 0 ) {
             const privateKey = fs.readFileSync('./claves/privada.pem','utf-8');

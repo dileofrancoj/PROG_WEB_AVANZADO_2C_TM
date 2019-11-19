@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form enctype="multipart/form-data">
+            <!-- FOTO + COMENTARIO -->
+            <textarea class="form-control" name="comentario" [(ngModel)]="comentario"></textarea>
+            
+            <select #valores (change)="select(valores.value)">
+                <option value="0" selected disabled>Elegir opcion</option>
+                <option value="1">Valor 1</option>
+                <option value="2">Valor 2</option>
+            </select>
+
+            <input type="file"  (change)="onFileSelected($event)"> 
+
+            <button type="button" (click)="subir()" class="btn btn-primary">Subir información</button>
+            </form>
+        </div>
+    </div>
+</div>

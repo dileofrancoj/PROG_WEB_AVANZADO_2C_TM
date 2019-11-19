@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 
@@ -6,6 +7,10 @@ import { Injectable } from '@angular/core';
 })
 export class UsuariosService extends BaseService{
 
+  async uploadFile(obj) {
+    this.setEndPoint('upload');
+    return this.post(obj);
+  }
 
   async postUsuario(obj) {
     try {

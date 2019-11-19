@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +9,7 @@ export class BaseService {
   url_server =  environment.url_server;
   endpoint = "";
   // headersGlobal : any = {}
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private router : Router) { }
 
   getHttpOptions() {
     let httpHeadersOptions : any  = {}
@@ -18,20 +19,29 @@ export class BaseService {
         // Authorization : sesion
         httpHeadersOptions = {
           headers : new HttpHeaders({
-            'content-type' : 'application/json',
+            // 'content-type' : 'application/json',
             Authorization : localStorage.getItem('usuario') // token
           })
         } 
       } else {
         httpHeadersOptions = {
           headers : new HttpHeaders({
-            'content-type' : 'application/json'
+            // 'content-type' : 'application/json'
           })
         }
       }
       return httpHeadersOptions;
     } catch(error) {
       console.log(error);
+    }
+  }
+
+  processResponseError(e) {
+    if(e.error == 401) {
+      localStorage.clear();
+      this.router.navigate(['/'])
+    } else {
+      throw e;
     }
   }
 
@@ -47,7 +57,9 @@ export class BaseService {
       return this.http.get(this.url_server + this.endpoint, options).toPromise();
 
     } catch(error) {
-      throw error;
+      console.log(error);
+      
+      this.processResponseError(error)
     }
   }
 

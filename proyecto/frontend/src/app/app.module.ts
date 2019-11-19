@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UploadComponent } from './components/upload/upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     PerfilComponent,
     NavbarComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
