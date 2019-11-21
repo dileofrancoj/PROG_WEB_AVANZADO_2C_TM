@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
+    "ng-bootstrap": "^1.6.3",
+    "ngb-modal": "^2.0.3",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^8.18.6",

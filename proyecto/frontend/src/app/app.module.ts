@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
-
+import {ModalModule} from 'ngb-modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { Navbar2Component } from './components/navbar2/navbar2.component';
+import { ModComponent } from './components/mod/mod.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,14 +29,18 @@ import { UploadComponent } from './components/upload/upload.component';
     LoginComponent,
     PerfilComponent,
     NavbarComponent,
-    UploadComponent
+    UploadComponent,
+    ModalComponent,
+    Navbar2Component,
+    ModComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
