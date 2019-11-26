@@ -1,0 +1,99 @@
+0. Save private key en putty
+
+Para asociar una IP elastica
+
+1. Associate Elastic IP Adress
+	--> Instance
+		Choose an instance
+
+2. sudo apt-get update
+3. sudo apt-get install nodejs 
+4. sudo apt-get install apache2
+5. sudo apt-get install mysql-server
+6. sudo mysql_secure_installation utility
+7. sudo systemctl start mysql
+8. sudo mysql -u root -p x
+
+9. sudo apt-get install phpmyadmin
+
+
+TCP/IP SOCKET
+phpmyadmin@localhost.com
+
+
+Crear link simbolico
+sudo ln -s 
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo a2enconf phpmyadmin
+systemctl reload apache2
+
+CREATE USER 'newuser'@'%' IDENTIFIED BY 'you_password_here';
+y luego
+
+GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'%' WITH GRANT OPTION
+
+
+
+EC2 : Elastic Cloud Computer
+
+Putty (Putty, PuttyGen)
+Winscp (visual)
+
+
+https://www.digitalocean.com/community/tutorials/como-instalar-mysql-en-ubuntu-18-04-es
+
+
+limpiar pantalla : clear
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo apt-get install apache2
+sudo apt-get install mysql-server
+sudo mysql_secure_installation 
+	Configurar password
+	Configurar accesos remotos al servidor
+
+sudo mysql -u root -p
+	password
+
+
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-enabled/phpmyadmin.conf
+
+
+/etc/phpmyadmin/apache.conf
+
+/etc/apache2/conf-enabled : Configuraciones de rutas y archivos de apache
+						--> phpmyamdin.conf
+
+Acceso directo (link simbolico)
+
+
+miip/phpmyadmin
+/etc/apache2/conf-enabled/phpmyadmin.conf
+
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-enabled/phpmyadmin.conf
+
+si no son root :
+sudo service apache2 restart
+
+sin son root : 
+service apache2 restart
+
+
+Crear un nuevo usuario de MySQL
+https://www.digitalocean.com/community/tutorials/crear-un-nuevo-usuario-y-otorgarle-permisos-en-mysql-es
+
+Para crear un nuevo usuario y darle permisos lo debo ejecutar desde mysql
+
+mysql -u root -p
+No olvidar el usuario y contraseña ya que node se autentica con estos datos (host, puerto, user y password)
+	usuario : user
+	contraseña : pasteles12
+
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'pasteles12';
+
+GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost'
+
+
+Para asignar permisos a carpetas : 
+sudo chmod 777 nombreCarpeta

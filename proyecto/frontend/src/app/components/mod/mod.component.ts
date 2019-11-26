@@ -17,6 +17,7 @@ export class ModComponent implements OnInit {
   comprar() {
     console.log("compra")
     this.navService.carritoCargado$.emit(true);
+    // localStorage.setItem('carritocargado','true'); 
   }
 
   cargar() {
