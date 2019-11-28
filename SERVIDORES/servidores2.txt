@@ -1,3 +1,35 @@
+para instalar en la instancia : 
+sudo npm install forever -g
+
+crontab (ejecutar tareas constantemente)
+sudo nohup nodemon npm start & ||  corre nodemon en segundo plano
+PID : x
+ps -aux | grep nodejs
+ps -aux | grep servicio 
+
+sudo kill PID
+
+sudo forever list : Muestra todos los procesos corriendo desde forever 
+sudo forever start -c node ./bin/www (levanta en segundo plano el proceso y si se cae vuelva a lenvatarse)
+
+sudo forever stop PID
+
+Port 3000 in use
+
+PID -----> Nombre | Puerto  
+ x
+
+Matar proceso 
+ps -aux | grep node : PID
+sudo kill PID
+
+sudo fuser -k 3000/tcp : Para cerrar PID asociados a puertos
+
+
+Para borrar archivos del sistema 
+sudo rm -rf archivo 
+
+
 Documentacion 
 S3 
 
@@ -20,7 +52,7 @@ Permisos :
     ]
 }
 
-APACHE
+DOCUMENTACION DE APACHE
 
 http://httpd.apache.org/docs/2.4/
 https://httpd.apache.org/docs/trunk/es/mod/mod_proxy.html#proxypass
@@ -30,19 +62,58 @@ Proxy apache
 
 <VirtualHost *:80>
 
-	ServerName Dominio
-	ServerAlias Dominio
-
-	
-	<Location />
-		ProxyPass http://18.217.183.135:3030/
-		ProxyPassReverse http://18.217.183.135:3030/
-		Allow from all
-	</Location>
+    ServerName francodileo.com.ar
+    #ServerAlias www.francodileo.com.ar
 
 
-RewriteEngine on
-RewriteCond %{SERVER_NAME} =0800.proyectossecretos.com.ar [OR]
-RewriteCond %{SERVER_NAME} =proyectossecretos.com.ar
-RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+    <Location />
+        ProxyPass http://ipElastica:3000/
+        ProxyPassReverse http://ipElastica:3000/
+        Allow from all
+    </Location>
+
+
 </VirtualHost>
+#RewriteEngine on
+#RewriteCond %{SERVER_NAME} =0800.proyectossecretos.com.ar [OR]
+#RewriteCond %{SERVER_NAME} =proyectossecretos.com.ar
+#RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+--------------------------------------------------------------------------------------------------------------
+Servidor 
+
+NodeJS
+bin/www : PORT 3000
+
+Cliente (Angular)
+environment.ts 
+    {
+        url : 'http://host:puerto'
+    }
+
+POSTMAN
+http://ip:3000
+
+PUERTOS DE ENTRADA (22, 80 , 3306, 3000)
+PUERTOS DE SALIDA
+
+UTN : 
+
+PUERTOS DE SALIDA (80, 443)
+54.207.40.174
+
+CloudFront
+Let's encrypt
+
+
+http://proyectopwa2prueba.com.ar.s3-website-sa-east-1.amazonaws.com
+
+
+stonecat.com.ar --> 80 APACHE ---> /var/www/html/stonecat.com.ar
+
+/var/www/html 
+
+    stonecat.com.ar
+        página
+
+
