@@ -1,0 +1,48 @@
+Documentacion 
+S3 
+
+https://docs.aws.amazon.com/es_es/AmazonS3/latest/dev/WebsiteHosting.html
+
+Configuración JSON S3
+
+Permisos : 
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::S3NAME/*"
+        }
+    ]
+}
+
+APACHE
+
+http://httpd.apache.org/docs/2.4/
+https://httpd.apache.org/docs/trunk/es/mod/mod_proxy.html#proxypass
+
+
+Proxy apache 
+
+<VirtualHost *:80>
+
+	ServerName Dominio
+	ServerAlias Dominio
+
+	
+	<Location />
+		ProxyPass http://18.217.183.135:3030/
+		ProxyPassReverse http://18.217.183.135:3030/
+		Allow from all
+	</Location>
+
+
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =0800.proyectossecretos.com.ar [OR]
+RewriteCond %{SERVER_NAME} =proyectossecretos.com.ar
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
