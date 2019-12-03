@@ -1,0 +1,209 @@
+MongoDB : Base de datos no relacional (no tiene estructura definida)
+		: JSON
+
+MongoDB : C++ (orientada a documentos (objetos))
+
+Base de datos
+	Colecciones (tablas)
+		Documentos (registros)
+
+2 Servidores
+Identificadores : únicos a nivel global (toman los segundos , PID)
+Coleccion A | Coleccion B
+
+Se puede ejecutar codigo javascript
+fecha : new Date()
+
+_id : ObjectId() : encargada de generar códigos unicos para los ids
+
+
+C:\Archivos de programa\MongoDB\Server/4.2 (todos los ejecutables para inicializar mongo)
+
+C:/data/db
+
+MySQL (Levantado)              | mongod.exe
+MySQL (terminal) --> consultas | mongo.exe
+
+1. show databases
+2. use [baseDeDatos]
+3. creamos una coleccion productos. 
+4. db (muestra la base de datos actual) : objeto
+
+dato =
+{
+	nombre : 'anillo',
+	descripcion : 'anillo de oro',
+	stock : 10,
+	disponibilidad : 1,
+	precio : 100
+}
+
+Insertar documentos dentro de una coleccion : 
+	db.[coleccion].insert(obj)
+
+Buscar documentos dentro de una coleccion : 
+	db.coleccion.find()
+	let data = db.coleccion.find() | Cursor
+
+	db.coleccion.find().pretty()
+	db.coleccion.findOne() #Primer registro
+
+	db.coleccion.deleteOne({})
+	db.coleccion.deleteMany({})
+
+	El deleteOne o Many nos borra los documentos. No nos borra la coleccion
+
+	db.coleccion.drop() Borra la coleccion (junto con sus documentos)
+ db.productos.insert(
+... {
+... nombre : 'pulsera',
+... descripcion : 'pulsera de plata',
+... stock : 30,
+... disponibilidad : 0,
+... medidas : ['SM','MD','LG'],
+... precio : 76.2,
+	_id : 1
+... }
+... )
+
+db.coleccion.find({condicion})
+Operadores mysql ( = , <>, >, <)
+Operadores mongo ($eq, $not), $gt, $lt, $gte, $lte)
+$eq : Igual
+$not : Distinto
+$gt : Mayor a
+$lt : Menor a 
+$gte : Mayor o igual a
+$lte : Menor o igual a
+
+$and
+$or 
+$in
+
+db.coleccion.find(
+	{
+		nombre : { $eq : 'cadena' }	
+	}
+)
+
+db.coleccion.find(
+
+	{
+		$or : [
+			{stock : {$eq : 50}},
+			{precio : {$gte : 30}}
+		]
+	}
+)
+
+Borrar  documento
+db.productos.deleteOne(
+
+	{
+		$and : [
+			{disponibilidad : {$eq : 0}}
+		]
+	}
+)
+
+Actualizar un registro
+
+db.productos.updateMany()
+db.productos.updateOne()
+
+Actualizar productos con disponibildad 1 a 0
+Actualizar disponibilidad a 0 y precio a 120
+	Disponibilidad : 1 o
+	precio entre 50 y 200
+
+db.productos.updateMany(
+
+	{$or : [
+			{disponibilidad : {$eq : 1}},
+			{precio : {$gte : 50}}
+		]
+	},
+
+	{$set : {disponibilidad : 0, precio : 120} }
+)
+
+--------------------------------------------------------------------------
+	db.productos.find({precio : 50, stock : 100})
+
+	{$or : [
+			{disponibilidad : {$eq : 1}},
+			{$and : 
+				[
+					{precio : {$gte : 50}},
+					{precio : {$lte : 100}}
+				]
+			}
+			
+		]
+	},
+
+	{$set : {disponibilidad : 0, precio : 120} }
+)
+
+
+---------------------------------------------------------------------------
+
+$unset se utiliza para eliminar keys 
+
+
+
+db.productos.updateMany({}, {$unset : {disponibilidad : ''}})
+El primer parametro de update representa la condicion. Cuando lo dejamos vació reprensenta un all
+$unset : {} Recibe un objeto con propiedades a eliminar
+
+------------------------------------------------------------------------------
+
+db.productos.find().sort({precio : 1})
+
+El objeto que resulta de db.productos.find() lo vamos a ordenar por precio de forma asc (1)
+db.productos.find().sort({precio : -1}).pretty()
+
+El objeto que resulta de db.productos.find() cursor lo vamos a ordenar por precio de forma desc (-1)
+
+db.productos.find().sort({precio:1}).limit(4).pretty()
+
+{
+	_id : objectId(),
+	nombre : 'Franco'
+	paises : ['Brasil', 'Uruguay'] 
+}
+
+db.coleccion.find({_id : 1, $in : {paises : 'Uruguay'}})
+Cuando se quieren traer campos particulares de una coleccion : 
+
+	db.coleccion.find({},{propiedad1 : 1, propiedad2 : 0})
+	El 1 implica traer la propiedad en el find 
+	El 0 implica NO traer la prop en el find
+	El _id viene por default en cualquier find a menos que especifiquemos lo contrario con 0.
+
+*** 
+Usuarios 
+	{
+		_id
+		nombre
+		foto
+		apellido
+		edad
+		estado
+		mail
+		telefono
+		password,
+		fecha_registro : new Date()
+	}
+
+a. Imprimir todos los usuarios de la plataforma
+b. Recuperar los primeros 5 usuarios que tengan mas de 18 años.
+c. Mostrar los usuarios de nombre : 'x' y con estado : 1
+d. Mostrar usuarios con edad mayor a 20 y que no tenga foto asociada
+e. Mostrar los usuarios ordenados por edad desc que cumplan nombre : 'x' y edad entre 20 y 30
+f. Actualizar los usuarios que tengan estado 0 a 1, que cumplan las condiciones :  mayores a 20 años y tengan foto asociada
+g. Borrar todos los usuarios cuyo estado sea 0 y la fecha de registro sea dos meses menor a la actual.
+h. Eliminar un usuario por mail
+i. Actualizar todos los datos de un usuario filtrando por ID
+
+new Date(2019,12,2)
