@@ -1,0 +1,15 @@
+
+this.ArrayValores = this.service.data()
+this.ArrayBusqueda
+
+
+
+#d (keyup)=buscarValores(d.value)
+
+
+buscarValores(dato) {
+    for(let i=0;i <this.ArrayValores.length; i++) {
+        if(this.ArrayValores[i].nombre === dato);
+            this.ArrayBusqueda.push(this.ArrayValores[i])
+    }
+}
